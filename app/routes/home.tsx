@@ -16,6 +16,7 @@ const STUDENT_DB: Record<string, any> = {
 };
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [view, setView] = useState<"search" | "loading" | "result">("search");
   const [studentId, setStudentId] = useState("");
   const [studentResult, setStudentResult] = useState<any>(null);
@@ -85,7 +86,24 @@ export default function Home() {
         <div className="container-wide header-flex">
           <img src="/logo-removebg-preview.png" alt="MIT Logo" className="mit-logo" />
           
-          <nav className="nav-links">
+          <div className="mobile-menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {isMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </>
+              )}
+            </svg>
+          </div>
+
+          <nav className={`nav-links ${isMenuOpen ? 'mobile-active' : ''}`}>
             <span className="nav-item">Courses</span>
             <span className="nav-item">How to apply</span>
             <span className="nav-item">Entry requirements</span>
@@ -173,7 +191,7 @@ export default function Home() {
       </section>
 
       {/* Result Archive Section (Restored to Previous UI) */}
-      <section id="archive-section" className="mit-section" style={{ background: '#f8fafc', padding: '80px 0' }}>
+      <section id="archive-section" className="mit-section" style={{ background: '#f8fafc', padding: '40px 0' }}>
         <div className="mit-container">
           <div className="archive-header">
             <div className="logo-section">

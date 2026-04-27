@@ -22,7 +22,7 @@ body {
 
 /* Layout Utilities */
 .mit-section {
-  padding: 60px 0;
+  padding: 40px 0;
 }
 
 .container-wide {
@@ -131,6 +131,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .mit-logo {
@@ -581,7 +582,8 @@ body {
 .result-table-container {
   border: 1px solid #ddd;
   border-radius: 4px;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .result-table {
@@ -657,16 +659,192 @@ body {
   margin-top: 20px;
 }
 
-@media (max-width: 991px) {
-  .news-grid, .footer-grid, .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  cursor: pointer;
+  color: var(--text-dark);
+  padding: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 15px;
+    font-size: 14px;
+  }
+  
+  .course-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .header-flex { flex-direction: column; gap: 15px; }
-  .nav-links { display: none; }
-  .news-grid, .footer-grid, .benefits-grid { grid-template-columns: 1fr; }
-  .testimonial-block { flex-direction: column; }
-  .testimonial-img, .testimonial-text { width: 100%; }
+  .utility-nav {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .mit-logo {
+    height: 45px;
+    order: 1;
+  }
+
+  .header-search {
+    display: none; /* Hide search on mobile header to save space */
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.mobile-active {
+    max-height: 400px;
+    padding: 10px 0;
+  }
+
+  .nav-item {
+    padding: 15px 25px;
+    border-bottom: 1px solid #f1f5f9;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-banner {
+    height: 400px;
+  }
+
+  .scholarship-card {
+    padding: 30px;
+    margin: 0 20px;
+  }
+
+  .scholarship-card h2 {
+    font-size: 28px;
+  }
+
+  .status-tabs .tabs-flex {
+    flex-wrap: wrap;
+  }
+
+  .tab-item {
+    flex: 0 0 50%;
+    border-bottom: 1px solid #444;
+  }
+
+  .tab-item:nth-child(even) {
+    border-right: none;
+  }
+
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .course-item {
+    padding: 25px 15px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .archive-header {
+    padding: 0 10px;
+  }
+
+  .archive-title {
+    font-size: 18px;
+  }
+
+  .search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .archive-input {
+    min-width: 0; /* Allow input to shrink */
+    flex: 1;
+  }
+
+  .archive-button {
+    width: auto;
+    padding: 10px 15px;
+    white-space: nowrap;
+    flex-shrink: 0; /* Don't let the button shrink */
+  }
+
+  .result-table td {
+    padding: 10px;
+  }
+
+  .label-cell {
+    width: 40%;
+  }
+
+  .benefits-grid, .news-grid, .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-logo {
+    height: 60px;
+  }
+
+  .mit-container {
+    padding: 0 10px;
+  }
+
+  .main-card {
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-item {
+    flex: 0 0 100%;
+    border-right: none;
+  }
+
+  .scholarship-card h2 {
+    font-size: 24px;
+  }
+
+  .scholarship-card h3 {
+    font-size: 18px;
+  }
+
+  .news-img {
+    height: 180px;
+  }
+
+  .result-table {
+    min-width: 500px;
+  }
+
+  .news-title {
+    font-size: 15px;
+  }
 }
